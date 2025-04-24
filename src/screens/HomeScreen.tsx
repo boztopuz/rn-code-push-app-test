@@ -91,7 +91,7 @@ const HomeScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
       showsVerticalScrollIndicator={false}
     >
       <View style={styles.header}>
-        <Text style={styles.title}>Welcome to CodePush Test App Doruk Test</Text>
+        <Text style={styles.title}>Welcome to CodePush Test App</Text>
         <Text style={styles.subtitle}>Current Version: {currentVersion}</Text>
         
         {updateAvailable && (
