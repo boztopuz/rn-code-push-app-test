@@ -83,7 +83,7 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
-        versionName "2.0.0"
+        versionName "1.0.0"
         resValue "string", "CODE_PUSH_APK_BUILD_TIME", "\"${System.currentTimeMillis()}\"" // TODO UNUTMAAAAAAAAA
     }
     signingConfigs {
