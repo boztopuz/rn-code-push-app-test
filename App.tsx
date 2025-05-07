@@ -52,8 +52,22 @@ const App: React.FC = () => {
             if (showAlerts) Alert.alert('Installing update...');
             break;
           case CodePush.SyncStatus.UPDATE_INSTALLED:
-            setSnackbarVisible(true);
-            if (showAlerts) Alert.alert('Update installed! Please restart the app.');
+            if (showAlerts) {
+              Alert.alert(
+                'Update Installed',
+                'The app has been updated. Would you like to restart now?',
+                [
+                  {
+                    text: 'Later',
+                    style: 'cancel'
+                  },
+                  {
+                    text: 'Restart Now',
+                    onPress: () => CodePush.restartApp()
+                  }
+                ]
+              );
+            }
             break;
           case CodePush.SyncStatus.UP_TO_DATE:
             if (showAlerts) Alert.alert('App is up to date!');
@@ -116,17 +130,15 @@ const App: React.FC = () => {
       showsVerticalScrollIndicator={false}
     >
       <View style={styles.header}>
-        <Text style={styles.title}>Welcome to CodePush 2 mayıs</Text>
+        <Text style={styles.title}>Welcome to CodePush 7 mayıs 2</Text>
         <Text style={styles.subtitle}>Current Version: {currentVersion}</Text>
 
-        {updateAvailable && (
-          <Button
-            title="Update Available!"
-            variant="primary"
-            onPress={checkForUpdates}
-            style={styles.updateButton}
-          />
-        )}
+        <Button
+          title={updateAvailable ? "Update Available!" : "Check for Updates"}
+          variant="primary"
+          onPress={checkForUpdates}
+          style={styles.updateButton}
+        />
       </View>
 
       <Card title="App Features" style={styles.card}>
@@ -231,16 +243,6 @@ const App: React.FC = () => {
           <Text style={styles.tabLabel}>Profile</Text>
         </TouchableOpacity>
       </View>
-
-      <Snackbar
-        visible={snackbarVisible}
-        message="The app has been updated. Please restart to apply changes."
-        onDismiss={() => setSnackbarVisible(false)}
-        actionLabel="Restart"
-        onActionPress={() => CodePush.restartApp()}
-        autoHide={false}
-        swipeToDismiss
-      />
     </SafeAreaView>
   );
 };
