@@ -130,7 +130,7 @@ const App: React.FC = () => {
       showsVerticalScrollIndicator={false}
     >
       <View style={styles.header}>
-        <Text style={styles.title}>Welcome to CodePush 7 mayıs 2</Text>
+        <Text style={styles.title}>Welcome to CodePush 16 may test 3</Text>
         <Text style={styles.subtitle}>Current Version: {currentVersion}</Text>
 
         <Button
