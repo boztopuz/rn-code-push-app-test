@@ -118,3 +118,5 @@ dependencies {
         implementation jscFlavor
     }
 }
+
+apply from: "../../node_modules/@appcircle/react-native-code-push/android/codepush.gradle"
