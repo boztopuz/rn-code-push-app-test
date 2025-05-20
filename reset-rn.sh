@@ -11,6 +11,7 @@ npm cache clear --force
 
 # 4. Reinstall dependencies
 rm -rf node_modules
+rm package-lock.json
 npm install
 
 # Clear Metro and Pod cache
