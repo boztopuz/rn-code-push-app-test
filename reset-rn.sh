@@ -12,7 +12,7 @@ npm cache clear --force
 # 4. Reinstall dependencies
 rm -rf node_modules
 rm package-lock.json
-npm install
+yarn
 
 # Clear Metro and Pod cache
 rm -rf $TMPDIR/metro-*
@@ -21,7 +21,7 @@ rm -rf $TMPDIR/metro-*
 cd ios
 rm -rf build
 rm -rf Pods
-rm -rf ~/Library/Developer/Xcode/DerivedData/*
+rm -rf Podfile.lock
 # Reinstall pods
-pod deintegrate
+
 pod install

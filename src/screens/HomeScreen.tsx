@@ -83,7 +83,7 @@ const HomeScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
       showsVerticalScrollIndicator={false}
     >
       <View style={styles.header}>
-        <Text style={styles.title}>Appcircle CodePush 30 Apr Setur Testasdasdasd  </Text>
+        <Text style={styles.title}>Appcircle CodePush 20 May RN version 0.78</Text>
         <Text style={styles.subtitle}>Current Version: {currentVersion}</Text>
 
         {updateAvailable && (
@@ -98,7 +98,7 @@ const HomeScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
 
       <Card title="App Features" style={styles.card}>
         <Text style={styles.cardText}>
-          Bu push demo amacı ile CLI üzerinden gönderilmiştir. Bunu rollback atacağız
+          RN Version 0.78
         </Text>
       </Card>
 
