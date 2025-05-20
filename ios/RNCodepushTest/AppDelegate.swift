@@ -1,28 +1,34 @@
 import UIKit
 import React
-import React_RCTAppDelegate
+// CodePush'u Swift'te kullanmak için aşağıdaki importu ekliyoruz
+// Eğer Bridging-Header tanımlıysa bu import çalışacaktır
 
 @main
-class AppDelegate: RCTAppDelegate {
-  override func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-    self.moduleName = "RNCodepushTest"
-    
-    // You can add your custom initial props in the dictionary below.
-    // They will be passed down to the ViewController used by React Native.
-    self.initialProps = [:]
+class AppDelegate: UIResponder, UIApplicationDelegate {
+  var window: UIWindow?
 
-    return super.application(application, didFinishLaunchingWithOptions: launchOptions)
-  }
-
-  override func sourceURL(for bridge: RCTBridge) -> URL? {
-    self.bundleURL()
-  }
-
-  override func bundleURL() -> URL? {
+  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    let jsCodeLocation: URL
     #if DEBUG
-      RCTBundleURLProvider.sharedSettings().jsBundleURL(forBundleRoot: "index")
+      jsCodeLocation = RCTBundleURLProvider.sharedSettings().jsBundleURL(forBundleRoot: "index")!
     #else
-      CodePush.bundleURL()
+      jsCodeLocation = CodePush.bundleURL() // CodePush'u kullanmak için
     #endif
+
+    let rootView = RCTRootView(
+      bundleURL: jsCodeLocation,
+      moduleName: "RNCodepushTest",
+      initialProperties: nil,
+      launchOptions: launchOptions
+    )
+
+    let rootViewController = UIViewController()
+    rootViewController.view = rootView
+
+    self.window = UIWindow(frame: UIScreen.main.bounds)
+    self.window?.rootViewController = rootViewController
+    self.window?.makeKeyAndVisible()
+
+    return true
   }
 }
