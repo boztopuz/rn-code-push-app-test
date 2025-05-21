@@ -83,7 +83,7 @@ const HomeScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
       showsVerticalScrollIndicator={false}
     >
       <View style={styles.header}>
-        <Text style={styles.title}>Appcircle CodePush RN version 0.76 CodePush Prep tests commit for wf stepasdasdasdasdasdasdasdasdasd</Text>
+        <Text style={styles.title}>Appcircle CodePush RN version 0.76 CodePush Prep tests commit for</Text>
         <Text style={styles.subtitle}>Current Version: {currentVersion}</Text>
 
         {updateAvailable && (
