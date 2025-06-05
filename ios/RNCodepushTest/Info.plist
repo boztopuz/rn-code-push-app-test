@@ -51,7 +51,7 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>CodePushSigningPublicKey</key>
+	<key>CodePushPublicKey</key>
 	<string>-----BEGIN PUBLIC KEY-----
 MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArI1/6vw3QpZoYsPD6odz
 +BJ2r+zPNICQ/xskkq8VBPuP9yXNl5RChYlPHNesoPR7HgZ2Bnka9TnKqfVJ16Y/
