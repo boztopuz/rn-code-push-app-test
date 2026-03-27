@@ -19,25 +19,29 @@ target 'RNCodepushTest' do
 
   use_react_native!(
     :path => config[:reactNativePath],
-    # An absolute path to your application root.
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
-   pod 'CodePush', :path => '../node_modules/@appcircle/react-native-code-push'
+  pod 'CodePush', :path => '../node_modules/@appcircle/react-native-code-push'
 
   post_install do |installer|
-    # https://github.com/facebook/react-native/blob/main/packages/react-native/scripts/react_native_pods.rb#L197-L202
     react_native_post_install(
       installer,
       config[:reactNativePath],
       :mac_catalyst_enabled => false,
-      # :ccache_enabled => true
     )
-installer.pods_project.targets.each do |target|
-      if target.name == 'fmt'
-        target.build_configurations.each do |config|
-          config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] ||= ['$(inherited)']
-          config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] << 'FMT_CONSTEVAL=constexpr'
+
+    # Fix fmt consteval compilation error - apply to ALL targets
+    installer.pods_project.targets.each do |target|
+      target.build_configurations.each do |build_config|
+        existing = build_config.build_settings['OTHER_CPLUSPLUSFLAGS'] || ['$(inherited)']
+        unless existing.include?('-DFMT_CONSTEVAL=constexpr')
+          build_config.build_settings['OTHER_CPLUSPLUSFLAGS'] = existing + ['-DFMT_CONSTEVAL=constexpr']
+        end
+
+        existing_c = build_config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] || ['$(inherited)']
+        unless existing_c.include?('FMT_CONSTEVAL=constexpr')
+          build_config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] = existing_c + ['FMT_CONSTEVAL=constexpr']
         end
       end
     end
